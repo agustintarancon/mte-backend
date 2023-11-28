@@ -18,9 +18,9 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
-  admin: {
-    type: Boolean,
-    default: false,
+  category: {
+    type: String,
+    required: true,
   },
 });
 
