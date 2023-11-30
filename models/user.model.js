@@ -22,6 +22,18 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  salary: {
+    type: Number,
+    default: 0
+  },
+  faults: {
+    type: Number,
+    default: 0
+  },
+  warnings: {
+    type: Number,
+    default: 0
+  },
 });
 
 module.exports = model("users", userSchema);
