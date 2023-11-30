@@ -48,7 +48,24 @@ const loginUserService = async ({ document, password }) => {
   return { token, userFounded };
 };
 
+const getAllUsersService = async({userName}) => {
+
+  let query = {};
+  if (userName) {
+    query.userName = { $regex: new RegExp(userName, 'i') };
+  }
+
+  const allUsers = User.find(query)
+
+  if (allUsers.length === 0) {
+    throw new Error("No se encontraron usuarios con los filtros seleccionados");
+  }
+
+  return allUsers;
+}
+
 module.exports = {
   registerUserService,
   loginUserService,
+  getAllUsersService
 };
