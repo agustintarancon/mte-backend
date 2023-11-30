@@ -3,9 +3,10 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   userName: {
     type: String,
+    required: true,
   },
   document: {
-    type: String,
+    type: Number,
     unique: true,
     required: true,
   },
@@ -24,15 +25,15 @@ const userSchema = new Schema({
   },
   salary: {
     type: Number,
-    default: 0
+    default: 0,
   },
   faults: {
     type: Number,
-    default: 0
+    default: 0,
   },
   warnings: {
     type: Number,
-    default: 0
+    default: 0,
   },
 });
 
