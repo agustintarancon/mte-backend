@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const registerUserService = async ({
   userName,
   document,
-  email,
   password,
   category,
 }) => {
@@ -15,7 +14,6 @@ const registerUserService = async ({
   const newUser = await User.create({
     userName,
     document,
-    email,
     password: hashedPassword,
     category,
   });

@@ -14,10 +14,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  email: {
-    type: String,
-    unique: true,
-  },
   category: {
     type: String,
     required: true,
