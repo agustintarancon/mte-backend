@@ -16,13 +16,14 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
     unique: true,
   },
   category: {
     type: String,
     required: true,
   },
+
+
   salary: {
     type: Number,
     default: 0,
@@ -35,6 +36,11 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
+
+  attendance: {
+    type: Schema.Types.ObjectId,
+    ref: "attendances"
+  }
 });
 
 module.exports = model("users", userSchema);

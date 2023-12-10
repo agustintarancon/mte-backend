@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const { connection } = require("../db/connection");
 const userRoutes = require("../routes/user.routes");
 const cors = require('cors');
+const attendancesRoutes = require("../routes/attendances.routes");
 
 
 // Variables de entorno
@@ -25,6 +26,7 @@ app.listen(port, () => {
 
 // Definiendo rutas
 app.use("/users", userRoutes);
+app.use("/attendances", attendancesRoutes);
 
 // Inicia la conexión a la base de datos
 connection();
