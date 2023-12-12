@@ -5,7 +5,7 @@ const registerAttendance = async (req, res) => {
     const newAttendance = await registerAttendanceService(req.body)
     res.status(201).json({ newAttendance });
   } catch (error) {
-    res.status(500).json(error.message);
+    res.status(400).json(error.message);
   }
 };
 
@@ -14,7 +14,7 @@ const attendanceController = async (req, res) => {
     await marcarFaltasUsuariosNoAsistentes(req.body);
      res.send('Faltas marcadas exitosamente.');
   } catch (error) {
-    res.status(500).json(error.message);
+    res.status(400).json(error.message);
   }
 }
 
