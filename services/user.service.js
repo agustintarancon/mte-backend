@@ -62,8 +62,26 @@ const getAllUsersService = async({userName}) => {
   return allUsers;
 }
 
+const editUserService = async (userId, updatedData) => {
+  if (updatedData.email) {
+    const {email} = updatedData
+    const emailExist = await User.findOne({ email })
+    if (emailExist) throw new Error("El correo electrónico ingresado ya está en uso, por favor ingrese otro.");
+  }
+
+  if (updatedData.password) {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(updatedData.password, saltRounds);
+    updatedData.password = hashedPassword;
+  }
+  
+  const updatedUser = await User.findByIdAndUpdate(userId, updatedData, { new: true });
+  return updatedUser;
+}
+
 module.exports = {
   registerUserService,
   loginUserService,
-  getAllUsersService
+  getAllUsersService,
+  editUserService
 };
