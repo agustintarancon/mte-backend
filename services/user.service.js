@@ -63,7 +63,7 @@ const getAllUsersService = async({userName}) => {
 }
 
 const editUserService = async (userId, updatedData) => {
-  if (updatedData.email) {
+  if (updatedData.document) {
     const {document} = updatedData
     const documentExist = await User.findOne({ document })
     if (documentExist) throw new Error("El documento ingresado ya está en uso.");
