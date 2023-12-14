@@ -64,9 +64,9 @@ const getAllUsersService = async({userName}) => {
 
 const editUserService = async (userId, updatedData) => {
   if (updatedData.email) {
-    const {email} = updatedData
-    const emailExist = await User.findOne({ email })
-    if (emailExist) throw new Error("El correo electrónico ingresado ya está en uso, por favor ingrese otro.");
+    const {document} = updatedData
+    const documentExist = await User.findOne({ document })
+    if (documentExist) throw new Error("El documento ingresado ya está en uso.");
   }
 
   if (updatedData.password) {
