@@ -18,8 +18,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-
-
+  
   salary: {
     type: Number,
     default: 0,
@@ -27,6 +26,10 @@ const userSchema = new Schema({
   faults: {
     type: Number,
     default: 0,
+  },
+  halfFaults: {
+    type: Number,
+    default: 0
   },
   warnings: {
     type: Number,

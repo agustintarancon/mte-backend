@@ -1,4 +1,4 @@
-const { registerAttendanceService, marcarFaltasUsuariosNoAsistentes } = require("../services/attendances.service");
+const { registerAttendanceService, marcarFaltasUsuariosNoAsistentes, getDailyAttendances } = require("../services/attendances.service");
 
 const registerAttendance = async (req, res) => {
   try {
@@ -18,7 +18,17 @@ const attendanceController = async (req, res) => {
   }
 }
 
+const dia = async (req, res) => {
+  try {
+    const asist = await getDailyAttendances(req.body);
+    res.status(201).json({ asist });
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+}
+
 module.exports = {
   registerAttendance,
-  attendanceController
+  attendanceController,
+  dia
 };
