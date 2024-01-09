@@ -47,12 +47,10 @@ const loginUserService = async ({ document, password }) => {
 };
 
 const getAllUsersService = async({userName}) => {
-
   let query = {};
   if (userName) {
     query.userName = { $regex: new RegExp(userName, 'i') };
   }
-
   const allUsers = User.find(query)
 
   if (allUsers.length === 0) {

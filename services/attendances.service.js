@@ -9,7 +9,7 @@ const registerAttendanceService = async ({ fechaHora, userId, present }) => {
   console.log(horaAsistencia)
   // console.log(minutosAsistencia)
   // if (diaAsistencia < 1 || diaAsistencia > 5) throw new Error("Asistencia fuera del dia permitido");
-  if (horaAsistencia < 8 || horaAsistencia >= 17) throw new Error("Asistencia fuera del horario permitido");
+  if (horaAsistencia < 7 || horaAsistencia >= 17) throw new Error("Asistencia fuera del horario permitido");
 
   const newAttendance = await Attendance.create({ fechaHora, userId, present });
   if (!newAttendance) throw new Error("Hubo un error al crear la asistencia");
@@ -111,8 +111,6 @@ const getDailyAttendances = async () => {
     throw error;
   }
 };
-
-
 
 module.exports = {
   registerAttendanceService,
