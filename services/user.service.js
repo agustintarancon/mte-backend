@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user.model");
 
-const registerUserService = async ({userName, document, password, category}) => {
 const registerUserService = async ({userName,document,password,category,}) => {
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
