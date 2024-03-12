@@ -2,12 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 
-const registerUserService = async ({
-  userName,
-  document,
-  password,
-  category,
-}) => {
+const registerUserService = async ({userName,document,password,category,}) => {
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
@@ -56,7 +51,7 @@ const getAllUsersService = async({userName}) => {
   if (allUsers.length === 0) {
     throw new Error("No se encontraron usuarios con los filtros seleccionados");
   }
-
+  
   return allUsers;
 }
 
