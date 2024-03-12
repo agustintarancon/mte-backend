@@ -5,7 +5,6 @@ const { connection } = require("../db/connection");
 const userRoutes = require("../routes/user.routes");
 const cors = require("cors");
 const attendancesRoutes = require("../routes/attendances.routes");
-
 dotenv.config();
 const port = process.env.PORT;
 
