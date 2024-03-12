@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user.model");
-const jwt = require("jsonwebtoken");
 
+const registerUserService = async ({userName, document, password, category}) => {
 const registerUserService = async ({userName,document,password,category,}) => {
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -20,7 +20,6 @@ const registerUserService = async ({userName,document,password,category,}) => {
 
 const loginUserService = async ({ document, password }) => {
   let userFounded;
-  const secretKey = process.env.SECRET_KEY;
 
   if (document) {
     userFounded = await User.findOne({ document });
@@ -31,14 +30,7 @@ const loginUserService = async ({ document, password }) => {
 
   if (!passwordMatch) throw new Error("Los datos ingresados no son válidos");
 
-  const payload = {
-    userFounded,
-  };
-  const token = await jwt.sign(payload, secretKey, {
-    expiresIn: "10h",
-  });
-
-  return { token, userFounded };
+  return userFounded ;
 };
 
 const getAllUsersService = async({userName}) => {
