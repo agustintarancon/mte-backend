@@ -35,6 +35,10 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
+  attendances: [{
+    type: Schema.Types.ObjectId,
+    ref: "attendances"
+  }],
 
   attendance: {
     type: Schema.Types.ObjectId,
