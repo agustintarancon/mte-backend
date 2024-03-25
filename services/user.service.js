@@ -37,7 +37,9 @@ const getAllUsersService = async({userName}) => {
   if (userName) {
     query.userName = { $regex: new RegExp(userName, 'i') };
   }
-  const allUsers = User.find(query)
+  const allUsers = User.find(query).populate({
+    path: 'attendances'
+  })
 
   if (allUsers.length === 0) {
     throw new Error("No se encontraron usuarios con los filtros seleccionados");
