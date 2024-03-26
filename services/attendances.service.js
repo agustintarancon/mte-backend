@@ -6,9 +6,7 @@ const registerAttendanceService = async ({ fechaHora, userId, present }) => {
   const diaAsistencia = fechaHoraObject.getDay();
   const horaAsistencia = fechaHoraObject.getHours();
   const minutosAsistencia = fechaHoraObject.getMinutes();
-  console.log(horaAsistencia)
-  // console.log(minutosAsistencia)
-  // if (diaAsistencia < 1 || diaAsistencia > 5) throw new Error("Asistencia fuera del dia permitido");
+
   if (horaAsistencia < 7 || horaAsistencia >= 17) throw new Error("Asistencia fuera del horario permitido");
 
   const newAttendance = await Attendance.create({ fechaHora, userId, present });
@@ -26,6 +24,15 @@ const registerAttendanceService = async ({ fechaHora, userId, present }) => {
     present = true
   }
   console.log(`presente:${present}`)
+
+  const usuario = await User.findById(userId);
+
+  if (!usuario) {
+    throw new Error('Usuario no encontrado');
+  }
+
+  usuario.attendances.push(newAttendance._id);
+  await usuario.save()
 
   return ({newAttendance});
 };

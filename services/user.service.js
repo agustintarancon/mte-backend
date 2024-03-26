@@ -32,20 +32,27 @@ const loginUserService = async ({ document, password }) => {
   return userFounded ;
 };
 
-const getAllUsersService = async({userName}) => {
+const getAllUsersService = async ({ userName }) => {
   let query = {};
   if (userName) {
     query.userName = { $regex: new RegExp(userName, 'i') };
   }
-  const allUsers = User.find(query).populate({
-    path: 'attendances'
-  })
-
-  if (allUsers.length === 0) {
-    throw new Error("No se encontraron usuarios con los filtros seleccionados");
-  }
   
-  return allUsers;
+  try {
+    const allUsers = await User.find(query)
+    .populate({
+      path: 'attendances',
+      select: 'fechaHora userId present'
+    })
+
+    if (allUsers.length === 0) {
+      throw new Error("No se encontraron usuarios con los filtros seleccionados");
+    }
+    console.log(allUsers)
+    return allUsers;
+  } catch (error) {
+    throw new Error("Error al obtener usuarios: " + error.message);
+  }
 }
 
 const editUserService = async (userId, updatedData) => {

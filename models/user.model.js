@@ -37,13 +37,9 @@ const userSchema = new Schema({
   },
   attendances: [{
     type: Schema.Types.ObjectId,
-    ref: "attendances"
+    ref: "attendances" // Cambiar a "attendances" en lugar de "attendances"
   }],
 
-  attendance: {
-    type: Schema.Types.ObjectId,
-    ref: "attendances"
-  }
 });
 
 module.exports = model("users", userSchema);
